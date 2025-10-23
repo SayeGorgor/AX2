@@ -122,7 +122,6 @@ export const projectPageSlice = createSlice({
         completedTasks: [],
         selectedTasks: [],
         buttonsDisabled: true,
-        addTaskWindowVisible: false,
         isLoading: false,
         hasError: false
     },
@@ -135,9 +134,6 @@ export const projectPageSlice = createSlice({
         },
         setSelectedTasks: (state, action) => {
             state.selectedTasks = action.payload;
-        },
-        setAddTaskWindowVisible: (state, action) => {
-            state.addTaskWindowVisible = action.payload;
         },
         setPPCurrentTasks: (state, action) => {
             state.currentTasks = action.payload;
@@ -262,8 +258,7 @@ export const {
      setProjectDate,
      setSelectedTasks,
      setPPCurrentTasks,
-     setPPCompletedTasks,
-     setAddTaskWindowVisible 
+     setPPCompletedTasks
 } = projectPageSlice.actions;
 
 export default projectPageSlice.reducer;

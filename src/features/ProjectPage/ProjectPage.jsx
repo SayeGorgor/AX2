@@ -3,7 +3,6 @@ import {
     setButtonsDisabled, 
     handleSelect,
     setSelectedTasks,
-    setAddTaskWindowVisible, 
     createTask,
     loadTasks,
     clearTasks,
@@ -28,7 +27,6 @@ const ProjectPage = () => {
     const completedTasks = useSelector(state => state.projectPage.completedTasks);
     const projectName = useSelector(state => state.projectPage.projectName);
     const selectedTasks = useSelector(state => state.projectPage.selectedTasks);
-    const addTaskWindowVisible = useSelector(state => state.projectPage.addTaskWindowVisible);
     const projectCreationDate = useSelector(state => state.projectPage.projectCreationDate);
     const user = useSelector(state => state.mainPage.user);
 
@@ -43,6 +41,7 @@ const ProjectPage = () => {
     const [currentTask, setCurrentTask] = useState('');
     const [currentTaskID, setCurrentTaskID] = useState('');
     const [newText, setNewText] = useState('');
+    const [addTaskWindowVisible, setAddTaskWindowVisible] = useState(false);
 
     //Functions
     const toggleSelect = (e) => {
@@ -78,18 +77,18 @@ const ProjectPage = () => {
     }
 
     const handleBackArrowClick = () => {
-        dispatch(setAddTaskWindowVisible(false));
+        setAddTaskWindowVisible(false);
         dispatch(setShowProjectPage(false));
         dispatch(setSelectedTasks([]));
         setNewTask('');
     }
 
     const handleCreateTaskClick = () => {
-        dispatch(setAddTaskWindowVisible(true));
+        setAddTaskWindowVisible(true);
     }
 
     const handleCloseWindowClick = () => {
-        dispatch(setAddTaskWindowVisible(false));
+        setAddTaskWindowVisible(false);
         setNewTask('');
     }
 
@@ -117,7 +116,7 @@ const ProjectPage = () => {
         if(res.meta.requestStatus === 'fulfilled') {
             await dispatch(loadTasks({ projectName, user }));
         }
-        dispatch(setAddTaskWindowVisible(false));
+        setAddTaskWindowVisible(false);
         setNewTask('');
     }
 
