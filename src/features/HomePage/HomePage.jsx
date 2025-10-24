@@ -51,14 +51,14 @@ const HomePage = () => {
         if(res.meta.requestStatus === 'fulfilled') {
             dispatch(setErrorMsg(''));
             dispatch(setHasError(false));
-            dispatch(setAddProjectWindowVisible(false));
+            setAddProjectWindowVisible(false);
         }
         dispatch(loadProjects(user));
         setName('');
     }
 
     const handleCreateProjectClick = () => {
-        dispatch(setAddProjectWindowVisible(true));
+        setAddProjectWindowVisible(true);
     }
 
     const handleCloseWindowClick = () => {
