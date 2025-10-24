@@ -302,7 +302,7 @@ const ProjectPage = () => {
                                 </div>
                             </li>
                         )}
-                        <div id='options-menu-container' className={showOptionsMenu ? '' : 'hidden'}>
+                        <div id='options-menu-container' className={showOptionsMenu ? 'visible' : ''}>
                             <ul id='options-menu'>
                                 <li id='rename-li' onClick={handleRenameClick}>
                                     Rename

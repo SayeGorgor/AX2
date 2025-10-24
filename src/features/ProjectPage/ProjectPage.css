@@ -141,6 +141,7 @@
 }
 
 #options-menu-container {
+    display: none;
     position: absolute;
     border-radius: 1em;
     box-shadow: -0.3em .3em 1em gray;
@@ -150,6 +151,10 @@
     right: 0;
     background-color: rgb(236, 236, 236);   
     z-index: 1;
+}
+
+#options-menu-container.visible {
+    display: block !important;
 }
 
 #options-menu {
