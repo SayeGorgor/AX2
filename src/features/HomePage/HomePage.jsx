@@ -59,7 +59,6 @@ const HomePage = () => {
 
     const handleCreateProjectClick = () => {
         setAddProjectWindowVisible(true);
-        console.log('Visible: ', addProjectWindowVisible);
     }
 
     const handleCloseWindowClick = () => {
