@@ -59,6 +59,7 @@ const HomePage = () => {
 
     const handleCreateProjectClick = () => {
         setAddProjectWindowVisible(true);
+        console.log('Visible: ', addProjectWindowVisible);
     }
 
     const handleCloseWindowClick = () => {
@@ -174,7 +175,7 @@ const HomePage = () => {
 
     return(
         <>  
-            <div id='create-project-window' className={addProjectWindowVisible ? '' : 'hidden'}>
+            <div id='create-project-window' className={addProjectWindowVisible ? 'visible' : ''}>
                 <CloseWindowButton className='close-window-btn' onClick={handleCloseWindowClick} />
                 <h2>Create New Project</h2>
                 <p id='error-msg'>{errorMsg}</p>
@@ -206,7 +207,7 @@ const HomePage = () => {
                             </div>
                         </li>
                     )}
-                        <div id='options-menu-container' className={showOptionsMenu ? '' : 'hidden'}>
+                        <div id='options-menu-container' className={showOptionsMenu ? 'visible' : ''}>
                             <ul id='options-menu'>
                                 <li id='rename-li' onClick={handleRenameClick}>
                                     Rename
