@@ -5,7 +5,6 @@ import { setProjectDate, setProjectName } from '../ProjectPage/projectPageSlice'
 import {
     deleteProject, 
     createProject, 
-    setAddProjectWindowVisible,
     loadProjects,
     clearProjects,
     renameProject,
@@ -22,7 +21,6 @@ const HomePage = () => {
     //Redux
     const dispatch = useDispatch();
     const projects = useSelector(state => state.homePage.projects);
-    const addProjectWindowVisible = useSelector(state => state.homePage.addProjectWindowVisible);
     const user = useSelector(state => state.mainPage.user);
     const errorMsg = useSelector(state => state.homePage.errorMsg);
 
@@ -33,6 +31,7 @@ const HomePage = () => {
     const [renamingActive, setRenamingActive] = useState(false);
     const [currentProject, setCurrentProject] = useState('');
     const [currentProjectID, setCurrentProjectID] = useState('');
+    const [addProjectWindowVisible, setAddProjectWindowVisible] = useState(false);
 
     //Ref 
     const renamingActiveRef = useRef(renamingActive);
@@ -63,7 +62,7 @@ const HomePage = () => {
     }
 
     const handleCloseWindowClick = () => {
-        dispatch(setAddProjectWindowVisible(false));
+        setAddProjectWindowVisible(false);
         dispatch(setErrorMsg(''));
         dispatch(setHasError(false));
         setName('');

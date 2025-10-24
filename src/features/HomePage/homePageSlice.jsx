@@ -73,7 +73,6 @@ export const homePageSlice = createSlice({
     name: 'homePage',
     initialState: {
         projects: [],
-        addProjectWindowVisible: false,
         isLoading: false,
         hasError: false,
         errorMsg: ''
@@ -106,9 +105,6 @@ export const homePageSlice = createSlice({
         },
         setCompletedTasks: (state, action) => {
             state.completedTasks = action.payload;
-        },
-        setAddProjectWindowVisible: (state, action) => {
-            state.addProjectWindowVisible = action.payload;
         },
         setErrorMsg: (state, action) => {
             state.errorMsg = action.payload;
@@ -166,7 +162,6 @@ export const {
     clearProjects,
     setCurrentTasks, 
     setCompletedTasks,
-    setAddProjectWindowVisible,
     setErrorMsg,
     setHasError 
 } = homePageSlice.actions;
