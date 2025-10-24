@@ -59,7 +59,7 @@
 }
 
 #avatar-dropdown {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -71,6 +71,10 @@
     border-radius: 1em;
     box-shadow: -0.1em .1em .5em gray;
     z-index: 3;
+}
+
+#avatar-dropdown.visible {
+    display: flex !important;
 }
 
 #avatar-dropdown-options {
@@ -99,8 +103,6 @@
     border-radius: 0 0 1em 1em;
 }
 
-.hidden {
-    display: none;
-}
+
 
 

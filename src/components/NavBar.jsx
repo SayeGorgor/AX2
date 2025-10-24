@@ -37,7 +37,7 @@ const NavBar = () => {
     
     return(
         <div id='nav-container'>
-            <div id='avatar-dropdown' className={showDropdown ? '' : 'hidden'}>
+            <div id='avatar-dropdown' className={showDropdown ? 'visible' : ''}>
                 <ul id='avatar-dropdown-options'>
                     <li id='logout' className='avatar-option' onClick={handleLogout}>
                         Logout
