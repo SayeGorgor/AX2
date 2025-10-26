@@ -1,6 +1,6 @@
 # AX2 Task Manager
 
-This is a task manager web app that allows users to store tasks for multiple different projects. To start you can create an account and then log in using your credentials (Please note that the first request may take a little while as Render.com servers go to sleep after 15 minutes of inactivity). Afterwards you will be taken to a screen where you can create and manage your projects. If you click on a project you will then be taken to a screen where you can manage all of your tasks for said project.
+This is a full stack task manager web app that allows users to store tasks for multiple different projects. To start you can create an account and then log in using your credentials (Please note that the first request may take a little while as Render.com servers go to sleep after 15 minutes of inactivity). Afterwards you will be taken to a screen where you can create and manage your projects. If you click on a project you will then be taken to a screen where you can manage all of your tasks for said project.
 
 ## Features
 
