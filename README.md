@@ -1,16 +1,28 @@
-# React + Vite
+# AX2 Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full stack task manager web app that allows users to store tasks for multiple different projects. To start you can create an account and then log in using your credentials (Please note that the first request may take a little while as Render.com servers go to sleep after 15 minutes of inactivity). Afterwards you will be taken to a screen where you can create and manage your projects. If you click on a project you will then be taken to a screen where you can manage all of your tasks for said project.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-Sign Up and Log In Functionality  
+-Add and Delete Projects  
+-Add and Delete Tasks  
+-Mark Tasks Complete/Incomplete  
 
-## React Compiler
+## Planned Bug Fixes / Improvements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-Adding a task may not immediately reflect and the user may have to leave the screen and come back for it to reflect  
+-Settings page not popping up  
+-Tasks complete not reflecting on home page  
+-Plan on adding a more responsive design  
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend:** React, React Router, Redux  
+**Backend:** Express, Node.js, MongoDB(Mongoose ODM), Passport, bcrypt  
+**Build Tool:** Vite  
+**Deployed With:** Render.com
+
+## Demo
+
+**Live Link:** https://ax2.onrender.com/ 
