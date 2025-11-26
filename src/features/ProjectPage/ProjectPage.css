@@ -6,9 +6,9 @@
 .back-arrow {
     position: absolute;
     height: auto;
-    width: 2em;
-    left: 5em;
-    top: 8em;
+    width: 2rem;
+    top: 4%;
+    left: 3%;
 }
 
 .back-arrow:hover {
@@ -52,8 +52,9 @@
 #current-tasks-container {
     flex: 1;
     margin: 0;
-    margin-left: 3em;
-    margin-right: 3em;
+    margin-left: 3rem;
+    margin-right: clamp(1rem, calc(1vw + .5rem), 3rem);
+    /* background-color: green; */
 }
 
 .task-list {
@@ -64,6 +65,7 @@
     margin-bottom: 0;
     max-height: 17em;
     overflow: auto;
+    /* background-color: green; */
 }
 
 .task-hr {
@@ -87,7 +89,8 @@
 
 .task p {
     font-size: 1.3em;
-    max-width: 15em;
+    max-width: clamp(5rem, calc(10vw + 1.5rem), 15rem);
+    margin-right: 5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -213,8 +216,8 @@
 #completed-tasks-container {
     flex: 1;
     margin: 0;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: clamp(1rem, calc(1vw + .5rem), 3rem);
+    margin-right: 2rem;
 }
 
 .checkbox-container {
@@ -435,4 +438,66 @@ button:disabled {
     background-color: gray !important;
     border-color: gray !important;
     cursor: default !important;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 1080px) {
+    #main-content {
+        flex-direction: column;
+        /* background-color: green; */
+    }
+
+    #completed-tasks-container,
+    #current-tasks-container {
+        margin-left: 3rem;
+        margin-right: 1rem;
+    }
+
+    .back-arrow {
+        top: 3%;
+    }
+}
+
+@media(max-width: 900px) {
+    #title-left {
+        /* background-color: green; */
+        flex-direction: column;
+    }
+
+    #title-left h3 {
+        margin-top: 0;
+    }
+
+    /* .back-arrow {
+        top: 0;
+    } */
+}
+
+@media(max-width: 650px) {
+    #title-left {
+        /* background-color: green; */
+        flex-direction: row;
+        margin-right: auto;
+        margin-left: 1rem;
+    }
+
+    .task p {
+        max-width: 15rem;
+    }
+
+    #project-title-container {
+        flex-direction: column;
+        /* background-color: aqua; */
+    }
+
+    #project-title-container h1 {
+        margin-right: auto;
+    }
+}
+
+@media(max-width: 550px) {
+    #title-left h3 {
+        /* background-color: green; */
+        font-size: 1rem;
+    }
 }

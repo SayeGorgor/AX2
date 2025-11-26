@@ -8,10 +8,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1em;
-    width: 80em;
-    height: 32em;
-    border-radius: 1em;
+    position: relative;
+    margin-top: 1rem;
+    width: 90vw;
+    height: 32rem;
+    border-radius: 1rem;
     background-color: rgb(243, 252, 255);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 1080px) {
+    #app-card {
+        height: auto;
+        margin-bottom: 1rem;
+    }
 }
 
