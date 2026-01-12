@@ -25,15 +25,14 @@ export const loadTasks = createAsyncThunk(
 export const createTask = createAsyncThunk(
     'projectPage/createTask',
     async(taskData, thunkAPI) => {
+        const task = {
+            ...taskData,
+            taskID: nanoid(),
+            taskCreationDate: parseDate(new Date())
+        }
         try {
-            const res = axios.post(`${API_URL}/tasks`, 
-                {
-                    ...taskData,
-                    taskID: nanoid(),
-                    taskCreationDate: parseDate(new Date())
-                }
-            );
-            return res.data;
+            await axios.post(`${API_URL}/tasks`, task);
+            return task;
         } catch(err) {
             return thunkAPI.rejectWithValue(err.response?.data || 'Error In Thunk');
         }
@@ -214,6 +213,7 @@ export const projectPageSlice = createSlice({
             .addCase(createTask.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasError = false;
+                state.currentTasks.push(action.payload);
             })
             .addCase(createTask.rejected, state => {
                 state.isLoading = false;

@@ -3,7 +3,7 @@ import { setShowProjectPage } from '../MainPage/mainPageSlice';
 import { setProjectDate, setProjectName } from '../ProjectPage/projectPageSlice';
 
 import {
-    deleteProject, 
+    deleteProject,
     createProject, 
     loadProjects,
     clearProjects,

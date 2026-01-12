@@ -67,6 +67,23 @@ export const renameProject = createAsyncThunk(
             return thunkAPI.rejectWithValue(err.response?.data || 'Error in rename thunk');
         }
     }
+);
+
+export const deleteProject = createAsyncThunk(
+    'homePage/deleteProject',
+    async(projectID, thunkAPI) => {
+        try {
+            const res = await axios.delete(
+                `${API_URL}/projects`, 
+                { params: { projectID } }
+            );
+            if(!res.data.success) return thunkAPI.rejectWithValue(res.data.message);
+            
+            return projectID;
+        } catch(err) {
+            return thunkAPI.rejectWithValue(err);
+        }
+    }
 )
 
 export const homePageSlice = createSlice({
@@ -87,9 +104,6 @@ export const homePageSlice = createSlice({
         },
         clearProjects: (state) => {
             state.projects = [];
-        },
-        deleteProject: (state, action) => {
-            state.projects = state.projects.filter(project => project.id !== action.payload);
         },
         addProject: (state, action) => {
             state.projects.push({
@@ -152,12 +166,26 @@ export const homePageSlice = createSlice({
                 state.isLoading = false;
                 state.hasError = true;
             })
+            .addCase(deleteProject.pending, state => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(deleteProject.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hasError = false;
+                state.projects = state.projects.filter(project => 
+                    project.id !== action.payload
+                );
+            })
+            .addCase(deleteProject.rejected, state => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
     }
 });
 
 export const { 
     setName, 
-    deleteProject, 
     addProject, 
     clearProjects,
     setCurrentTasks, 

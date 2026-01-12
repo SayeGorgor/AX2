@@ -88,8 +88,8 @@
 }
 
 .task p {
-    font-size: 1.3em;
-    max-width: clamp(5rem, calc(10vw + 1.5rem), 15rem);
+    font-size: 1.2rem;
+    max-width: 80%;
     margin-right: 5rem;
     white-space: nowrap;
     overflow: hidden;
@@ -97,7 +97,7 @@
 }
 
 .task h6 {
-    font-size: 1em;
+    font-size: 1rem;
     margin: 0;
 }
 
@@ -257,7 +257,7 @@
 #buttons button {
     padding: 1.5em 2em;
     margin: .5em;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 1em;
     font-size: .9em;
     font-weight: bold;
@@ -269,26 +269,26 @@
 }
 
 #buttons button:disabled {
-    border: 1px solid black !important;
+    border: 2px solid black !important;
     background-color: lightgray;
     cursor: auto;
 }
 
 #create-task-btn {
     background-color: rgb(101, 195, 226);
-    border: 1px solid rgb(101, 195, 226) !important;
+    border: 2px solid rgb(101, 195, 226) !important;
     transition: background-color .25s ease, border .25s ease;
 }
 
 #create-task-btn:hover {
     background-color: rgb(154, 223, 247);
-    border: 1px solid rgb(154, 223, 247) !important;
+    border: 2px solid rgb(154, 223, 247) !important;
 }
 
 #create-task-btn:active {
     transition: none;
     background-color: rgb(191, 239, 255);
-    border: 1px solid rgb(191, 239, 255) !important;
+    border: 2px solid rgb(191, 239, 255) !important;
 }
 
 #delete-btn {
@@ -298,13 +298,13 @@
 
 #delete-btn:hover {
     background-color: rgb(255, 16, 16);
-    border: 1px solid rgb(255, 16, 16) !important;
+    border: 2px solid rgb(255, 16, 16) !important;
 }
 
 #delete-btn:active {
     transition: none;
     background-color: rgb(255, 100, 100);
-    border: 1px solid rgb(255, 100, 100) !important;
+    border: 2px solid rgb(255, 100, 100) !important;
 }
 
 #mark-complete-btn {
@@ -315,13 +315,13 @@
 #mark-complete-btn:hover {
     /* background-color: rgb(70, 253, 70); */
     background-color: rgb(38, 219, 38);
-    border: 1px solid rgb(38, 219, 38) !important;
+    border: 2px solid rgb(38, 219, 38) !important;
 }
 
 #mark-complete-btn:active {
     transition: none;
     background-color: rgb(111, 255, 111);
-    border: 1px solid rgb(111, 255, 111) !important;
+    border: 2px solid rgb(111, 255, 111) !important;
 }
 
 #create-task-window {
@@ -331,12 +331,15 @@
     height: 20em;
     width: 30em;
     background-color: rgb(224, 247, 255);
-    top: 10em;
-    right: 30em;
+    top: 50%;
+    left: 50%;
     border: 2px solid black;
     border-radius: 1em;
-    box-shadow: -0.3em .3em 1em gray;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.15),
+        0 5px 10px rgba(0, 0, 0, 0.08);
     z-index: 1;
+    transform: translate(-50%, -50%);
 }
 
 #create-task-form {
@@ -353,7 +356,7 @@
 #create-task-form button {
     margin-top: 4em;
     padding: 1em 2em;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 1em;
     background-color: white;
     transition: background-color .25s ease, border .25s ease;
@@ -362,13 +365,13 @@
 #create-task-form button:hover {
     cursor: pointer;
     background-color: rgb(101, 195, 226);
-    border: 1px solid rgb(101, 195, 226);
+    border: 2px solid rgb(101, 195, 226);
 }
 
 #create-task-form button:active {
     transition: none;
     background-color: rgb(173, 235, 255);
-    border: 1px solid rgb(173, 235, 255);
+    border: 2px solid rgb(173, 235, 255);
 }
 
 .text-field {
