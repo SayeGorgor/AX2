@@ -77,6 +77,7 @@
 
 .task {
     display: flex;
+    position: relative;
     /* border: 1px solid black; */
     border-radius: 1em;
     /* width: 80%; */
@@ -86,6 +87,35 @@
     background-color: rgb(165, 229, 250);
     width: 92.5%;
     max-width: 35rem;
+}
+
+.task[data-top='false']::after {
+    content: attr(data-text);
+    position: absolute;
+    display: none;
+    top: -80%;
+    left: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.task[data-top='true']::after {
+    content: attr(data-text);
+    position: absolute;
+    display: none;
+    top: 80%;
+    left: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    z-index: 1;
+}
+
+.task:hover.task::after {
+    display: block;
 }
 
 .task p {
@@ -452,6 +482,15 @@ button:disabled {
         /* background-color: green; */
     }
 
+    #current-tasks-container,
+    #completed-tasks-container {
+        max-width: none;
+    }
+
+    .task {
+        max-width: none;
+    }
+
     #completed-tasks-container,
     #current-tasks-container {
         margin-left: 3rem;
@@ -460,6 +499,10 @@ button:disabled {
 
     .back-arrow {
         top: 3%;
+    }
+
+    .task:hover.task::after {
+        display: none;
     }
 }
 

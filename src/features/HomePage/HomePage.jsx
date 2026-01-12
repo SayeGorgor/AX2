@@ -15,6 +15,7 @@ import {
 import { useEffect, useState, useRef } from 'react';
 import CloseWindowButton from '../../assets/close_window.svg?react';
 import OptionsButton from '../../assets/options_button.svg?react';
+import LoadingAnimation from '../../assets/loading_animation.svg?react'
 import './HomePage.css';
 
 const HomePage = () => {
@@ -23,6 +24,7 @@ const HomePage = () => {
     const projects = useSelector(state => state.homePage.projects);
     const user = useSelector(state => state.mainPage.user);
     const errorMsg = useSelector(state => state.homePage.errorMsg);
+    const isLoading = useSelector(state => state.homePage.isLoadingProjects);
 
     //Use State
     const [name, setName] = useState('');
@@ -189,40 +191,47 @@ const HomePage = () => {
             </div>
             <div id='homepage-container'>
                 <h2 id='projects-title'>Projects</h2>
-                <ul id='tasks-list'>
-                    {projects.map(project => 
-                        <li>
-                            <div id={project.id} className='task-card' onClick={(e) => handleProjectClick(e, project.creationDate)}
-                                 onMouseEnter={handleMouseEnter} onMouseLeave={handleProjectMouseLeave}>
-                                <h4>{project.name}</h4>
-                                <p id='tasks-complete'>
-                                    Tasks Complete: <span className='completed-tasks'>{project.completedTasksAmt || 0}</span>
-                                    /
-                                    <span className='total-tasks'>{project.tasksAmt || 0}</span>
-                                </p>
-                                <p>{`Created: ${project.creationDate}`}</p>
-                                <OptionsButton className='options-button hidden' onMouseLeave={handleOptionButtonMouseLeave}
-                                               onClick={(e) => handleOptionButtonClick(e, project.id)} />
-                            </div>
-                        </li>
-                    )}
-                        <div id='options-menu-container' className={showOptionsMenu ? 'visible' : ''}>
-                            <ul id='options-menu'>
-                                <li id='rename-li' onClick={handleRenameClick}>
-                                    Rename
-                                </li>
-                                <li id='delete-li' onClick={handleDeleteClick}>
-                                    Delete
-                                </li>
-                            </ul>
+                {
+                    isLoading ?
+                        <div className='loading-animation-container'>
+                            <LoadingAnimation className='loading-animation' />
                         </div>
-                        <div id='rename-field' className={renamingActive ? '' : 'hidden'}>
-                            <form onSubmit={rename}>
-                                <input id='rename-input' type='text' value={newName} 
-                                    onChange={(e) => setNewName(e.target.value)} />
-                            </form>
-                        </div>
-                </ul>
+                    :
+                        <ul id='tasks-list'>
+                            {projects.map(project => 
+                                <li>
+                                    <div id={project.id} className='task-card' onClick={(e) => handleProjectClick(e, project.creationDate)}
+                                        onMouseEnter={handleMouseEnter} onMouseLeave={handleProjectMouseLeave}>
+                                        <h4>{project.name}</h4>
+                                        <p id='tasks-complete'>
+                                            Tasks Complete: <span className='completed-tasks'>{project.completedTasksAmt || 0}</span>
+                                            /
+                                            <span className='total-tasks'>{project.tasksAmt || 0}</span>
+                                        </p>
+                                        <p>{`Created: ${project.creationDate}`}</p>
+                                        <OptionsButton className='options-button hidden' onMouseLeave={handleOptionButtonMouseLeave}
+                                                    onClick={(e) => handleOptionButtonClick(e, project.id)} />
+                                    </div>
+                                </li>
+                            )}
+                                <div id='options-menu-container' className={showOptionsMenu ? 'visible' : ''}>
+                                    <ul id='options-menu'>
+                                        <li id='rename-li' onClick={handleRenameClick}>
+                                            Rename
+                                        </li>
+                                        <li id='delete-li' onClick={handleDeleteClick}>
+                                            Delete
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id='rename-field' className={renamingActive ? '' : 'hidden'}>
+                                    <form onSubmit={rename}>
+                                        <input id='rename-input' type='text' value={newName} 
+                                            onChange={(e) => setNewName(e.target.value)} />
+                                    </form>
+                                </div>
+                        </ul>
+                }
                 {projects.length > 4 && <hr />}
                 <button id='new-project-btn' onClick={handleCreateProjectClick}>New Project</button>
             </div>

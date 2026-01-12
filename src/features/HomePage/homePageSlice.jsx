@@ -99,6 +99,7 @@ export const homePageSlice = createSlice({
     initialState: {
         projects: [],
         isLoading: false,
+        isLoadingProjects: false,
         hasError: false,
         errorMsg: ''
     },
@@ -138,11 +139,11 @@ export const homePageSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(loadProjects.pending, state => {
-                state.isLoading = true;
+                state.isLoadingProjects = true;
                 state.hasError = false;
             })
             .addCase(loadProjects.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.isLoadingProjects = false;
                 state.hasError = false;
                 state.projects = [];
                 for(let project of action.payload) {
@@ -156,7 +157,7 @@ export const homePageSlice = createSlice({
                 }
             })
             .addCase(loadProjects.rejected, state => {
-                state.isLoading = false;
+                state.isLoadingProjects = false;
                 state.hasError = true;
             })
             .addCase(createProject.pending, state => {

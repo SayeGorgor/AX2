@@ -286,8 +286,15 @@ const ProjectPage = () => {
                     <ul id='current-tasks-list' className='task-list'>
                         {currentTasks.map((task, index) => 
                             <li key={index}>
-                                <div id={task.taskID} className='task current-task' onClick={toggleSelect} 
-                                     onMouseEnter={handleMouseEnter} onMouseLeave={handleTaskMouseLeave}>
+                                <div 
+                                    id={task.taskID} 
+                                    className='task current-task' 
+                                    onClick={toggleSelect} 
+                                    onMouseEnter={handleMouseEnter} 
+                                    onMouseLeave={handleTaskMouseLeave}
+                                    data-text={task.text}
+                                    data-top={index === 0 ? 'true' : 'false'}
+                                >
                                     <p>{task.text}</p>
                                     <div className='created-date-section'>
                                         <h6>Created</h6>

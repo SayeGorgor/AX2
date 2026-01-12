@@ -269,3 +269,13 @@ button:disabled {
     border-color: gray !important;
     cursor: default !important;
 }
+
+.loading-animation-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.loading-animation {
+    height: 4rem;
+}
