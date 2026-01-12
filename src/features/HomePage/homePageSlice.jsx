@@ -7,14 +7,22 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const loadProjects = createAsyncThunk(
     'homePage/loadProjects',
     async(username, thunkAPI) => {
-        const { dispatch } = thunkAPI;
         try {
             const res = await axios.get(`${API_URL}/projects`, { params: {username: username} });
-            dispatch(clearProjects());
             for(let project of res.data.projects) {
-                dispatch(addProject(project));
+                const { data:taskData } = await axios.get(
+                    `${API_URL}/tasks`, 
+                    { params: { projectName: project.projectName, user: username } }
+                );
+                project.tasksAmt = taskData.tasks.length;
+                project.completedTasksAmt = taskData.tasks.filter(task => 
+                    !!task.taskCompletionDate
+                ).length;
+                console.log('Project: ', project)
+                // dispatch(addProject(project));
             }
-            return res.data;
+            console.log('All Projects: ', res.data.projects)
+            return res.data.projects;
         } catch(err) {
             return thunkAPI.rejectWithValue(err.response?.data || { message: 'Failed to load projects' });;
         }
@@ -133,9 +141,19 @@ export const homePageSlice = createSlice({
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(loadProjects.fulfilled, state => {
+            .addCase(loadProjects.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasError = false;
+                state.projects = [];
+                for(let project of action.payload) {
+                    state.projects.push({
+                        id: project.projectID,
+                        name: project.projectName,
+                        creationDate: project.projectCreationDate,
+                        tasksAmt: project.tasksAmt,
+                        completedTasksAmt: project.completedTasksAmt,
+                    });
+                }
             })
             .addCase(loadProjects.rejected, state => {
                 state.isLoading = false;

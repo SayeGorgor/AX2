@@ -54,7 +54,7 @@
     margin: 0;
     margin-left: 3rem;
     margin-right: clamp(1rem, calc(1vw + .5rem), 3rem);
-    /* background-color: green; */
+    max-width: calc((100% - 8rem) / 2);
 }
 
 .task-list {
@@ -85,6 +85,7 @@
     align-items: center;
     background-color: rgb(165, 229, 250);
     width: 92.5%;
+    max-width: 35rem;
 }
 
 .task p {
@@ -218,6 +219,7 @@
     margin: 0;
     margin-left: clamp(1rem, calc(1vw + .5rem), 3rem);
     margin-right: 2rem;
+    max-width: calc((100% - 8rem) / 2);
 }
 
 .checkbox-container {

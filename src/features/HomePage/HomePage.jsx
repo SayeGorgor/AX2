@@ -196,9 +196,9 @@ const HomePage = () => {
                                  onMouseEnter={handleMouseEnter} onMouseLeave={handleProjectMouseLeave}>
                                 <h4>{project.name}</h4>
                                 <p id='tasks-complete'>
-                                    Tasks Complete: <span className='completed-tasks'>0</span>
+                                    Tasks Complete: <span className='completed-tasks'>{project.completedTasksAmt || 0}</span>
                                     /
-                                    <span className='total-tasks'>0</span>
+                                    <span className='total-tasks'>{project.tasksAmt || 0}</span>
                                 </p>
                                 <p>{`Created: ${project.creationDate}`}</p>
                                 <OptionsButton className='options-button hidden' onMouseLeave={handleOptionButtonMouseLeave}
