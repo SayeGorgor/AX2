@@ -11,9 +11,7 @@ This is a full stack task manager web app that allows users to store tasks for m
 
 ## Planned Bug Fixes / Improvements
 
--Adding a task may not immediately reflect and the user may have to leave the screen and come back for it to reflect  
 -Settings page not popping up  
--Tasks complete not reflecting on home page  
 -Plan on adding a more responsive design  
 
 ## Tech Stack
