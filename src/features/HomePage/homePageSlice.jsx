@@ -18,10 +18,8 @@ export const loadProjects = createAsyncThunk(
                 project.completedTasksAmt = taskData.tasks.filter(task => 
                     !!task.taskCompletionDate
                 ).length;
-                console.log('Project: ', project)
-                // dispatch(addProject(project));
             }
-            console.log('All Projects: ', res.data.projects)
+
             return res.data.projects;
         } catch(err) {
             return thunkAPI.rejectWithValue(err.response?.data || { message: 'Failed to load projects' });;
