@@ -13,13 +13,15 @@ import {
 } from './projectPageSlice';
 import { setShowProjectPage } from '../MainPage/mainPageSlice';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BackArrow from '../../assets/back_arrow.svg?react';
 import CloseWindowButton from '../../assets/close_window.svg?react';
 import OptionsButton from '../../assets/options_button.svg?react';
 import './ProjectPage.css';
 
 const ProjectPage = () => {
+    const tasksRef = useRef([]);
+
     //Redux
     const dispatch = useDispatch();
     const buttonsDisabled = useSelector(state => state.projectPage.buttonsDisabled);
@@ -42,6 +44,7 @@ const ProjectPage = () => {
     const [currentTaskID, setCurrentTaskID] = useState('');
     const [newText, setNewText] = useState('');
     const [addTaskWindowVisible, setAddTaskWindowVisible] = useState(false);
+    const [truncatedTasksText, setTruncatedTasksText] = useState({});
 
     //Functions
     const toggleSelect = (e) => {
@@ -240,7 +243,21 @@ const ProjectPage = () => {
         } else {
             dispatch(setButtonsDisabled(true));
         }
-    }, [selectedTasks])
+    }, [selectedTasks]);
+
+    //Set which tasks text were truncated
+    useEffect(() => {
+        console.log('Started')
+        let results = {};
+        console.log('Tasks Ref: ', tasksRef.current);
+        tasksRef.current.forEach((task, index) => {
+            console.log('Task Info: ', task, task.scrollWidth, task.clientWidth);
+            if(!task) return;
+            results[index] = task.scrollWidth > task.clientWidth;
+        });
+
+        setTruncatedTasksText(results);
+    }, [currentTasks]);
 
     return(
         <>
@@ -295,7 +312,7 @@ const ProjectPage = () => {
                                     data-text={task.text}
                                     data-top={index === 0 ? 'true' : 'false'}
                                 >
-                                    <p>{task.text}</p>
+                                    <p ref={el => tasksRef.current[index] = el}>{task.text}</p>
                                     <div className='created-date-section'>
                                         <h6>Created</h6>
                                         <span>{task.taskCreationDate}</span>
@@ -304,8 +321,17 @@ const ProjectPage = () => {
                                         <input type='checkbox' className='checkbox-target' onClick={toggleSelect}/>
                                         <span className='checkmark'></span>
                                     </label>
-                                    <OptionsButton className='task-options-button hidden' onMouseLeave={handleOptionButtonMouseLeave}
-                                                   onClick={(e) => handleOptionButtonClick(e, task.taskID)} />
+                                    <OptionsButton 
+                                        className='task-options-button hidden' 
+                                        onMouseLeave={handleOptionButtonMouseLeave}
+                                        onClick={(e) => handleOptionButtonClick(e, task.taskID)} 
+                                    />
+                                    <div className={`
+                                        full-task-text
+                                        ${truncatedTasksText[index] ? 'truncated' : ''}
+                                    `}>
+                                        {task.text}
+                                    </div>
                                 </div>
                             </li>
                         )}

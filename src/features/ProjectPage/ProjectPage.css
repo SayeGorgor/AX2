@@ -89,7 +89,22 @@
     max-width: 35rem;
 }
 
-.task[data-top='false']::after {
+.full-task-text {
+    position: absolute;
+    display: none;
+    top: -80%;
+    left: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.task:hover .full-task-text.truncated {
+    display: block;
+}
+
+/* .task[data-top='false']::after {
     content: attr(data-text);
     position: absolute;
     display: none;
@@ -112,11 +127,11 @@
     border-radius: 1rem;
     padding: 1rem;
     z-index: 1;
-}
+} */
 
-.task:hover.task::after {
+/* .task:hover.task::after {
     display: block;
-}
+} */
 
 .task p {
     font-size: 1.2rem;
