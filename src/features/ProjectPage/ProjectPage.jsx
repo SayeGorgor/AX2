@@ -207,6 +207,7 @@ const ProjectPage = () => {
 
 
     //Use Effect
+    //Close renaming fields and task options windows on click
     useEffect(() => {
         const handleWindowClick = (e) => {
             const optionButtons = document.querySelectorAll('.task-options-button');
@@ -237,6 +238,7 @@ const ProjectPage = () => {
         };
     }, []);
 
+    //Allow buttons to be clicked when tasks are selected
     useEffect(() => {
         if(selectedTasks.length > 0) {
             dispatch(setButtonsDisabled(false));
@@ -247,11 +249,8 @@ const ProjectPage = () => {
 
     //Set which tasks text were truncated
     useEffect(() => {
-        console.log('Started')
         let results = {};
-        console.log('Tasks Ref: ', tasksRef.current);
         tasksRef.current.forEach((task, index) => {
-            console.log('Task Info: ', task, task.scrollWidth, task.clientWidth);
             if(!task) return;
             results[index] = task.scrollWidth > task.clientWidth;
         });
@@ -274,7 +273,11 @@ const ProjectPage = () => {
                     <label id='master-label'>
                         Task Type:
                         <div id='options'>
-                            <label id='binary-label' className='check-label' for='radio1'>
+                            <label 
+                                id='binary-label' 
+                                className='check-label' 
+                                htmlFor='radio1'
+                            >
                                 Binary
                                 <input id='radio1' name='task-type' type='radio' value='binary' 
                                        onClick={(e) => setTaskType(e.target.value)} defaultChecked />
